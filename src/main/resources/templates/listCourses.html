@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome and Choose a Course</title>
+    <style>
+          body {
+              width: 800px;
+              margin: auto;
+            }
+    </style>
+</head>
+<body>
+<header>
+        <h1>Courses List</h1>
+</header>
+<main>
+    <h2>Choose course:</h2>
+    <form action="AddStudent" method="post">
+        <th:block th:each="course:${#lists.sort(courses)}">
+        <input type="radio" name="courseChoice" th:attr="value=${course.getCourseId()}"> <th:block th:text="${course.getName()}"></th:block>
+            <a style="margin-left:10px; font-weight:bold" th:href="@{'/courses/delete/' + ${course.getCourseId()}}">(DELETE)</a>
+            <a style="margin-left:10px; font-weight:bold" th:href="@{'/courses/edit-form/' + ${course.getCourseId()}}">(EDIT)</a><br/>
+        </th:block>
+        <br/>
+        <input type='submit' value='Manage students' style="margin-bottom: 10px"/> <br/>
+        <a href="/courses/add-form">Add new course</a> <br/>
+        <p style="color:red" th:text="${error!='null'} ? ${error} : ''"></p>
+    </form>
+</main>
+</body>
+</html>
+

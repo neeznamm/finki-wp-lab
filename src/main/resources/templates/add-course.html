@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create New/Update Course Page</title>
+</head>
+<body>
+<header>
+    <h1>Create or update a course </h1>
+</header>
+<section>
+    <form action="/courses/add" method="post">
+        <label for='name'>Course name:</label><input th:readonly="${courseToEdit != null}" id='name' type='text' name='name' th:attr="value=${courseToEdit!=null} ? ${courseToEdit.getName()} : '' "/><br/>
+        <label for='description'>Course description:</label><input id='description' type='text' name='description' th:attr="value=${courseToEdit!=null} ? ${courseToEdit.getDescription()} : '' "/><br/>
+        <label for="teacherSelect">Choose a teacher:</label>
+        <select id="teacherSelect" name="teacherId">
+            <option th:selected="${courseToEdit != null && teacher.getId() == courseToEdit.teacher.getId()}" th:each="teacher : ${teachers}" th:value="${teacher.getId()}" th:text="${teacher.getName()} + ' ' + ${teacher.getSurname()}"></option>
+        </select>
+        <input type="hidden" id="edit" name="edit" th:value="${courseToEdit != null} ? true : false">
+        <br/>
+        <input type='submit' value='Submit'/>
+    </form>
+</section>
+</body>
+</html>
