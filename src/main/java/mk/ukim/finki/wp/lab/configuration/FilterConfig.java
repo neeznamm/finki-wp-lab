@@ -15,6 +15,7 @@ public class FilterConfig {
         filterRegistrationBean.addUrlPatterns("/*");
         filterRegistrationBean.setName("Course Choice Filter");
         filterRegistrationBean.setOrder(Integer.MAX_VALUE-1);
+        filterRegistrationBean.setEnabled(false);
         return filterRegistrationBean;
     }
 }

@@ -19,7 +19,9 @@ public class CourseChoiceFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session = req.getSession();
-        if (session.getAttribute("courseChoice") == null && !req.getRequestURI().equals("/courses") && !req.getRequestURI().equals("/AddStudent")) {
+        if (session.getAttribute("courseChoice") == null &&
+                !req.getRequestURI().equals("/courses") &&
+                !req.getRequestURI().equals("/AddStudent")) {
             resp.sendRedirect("courses");
             return;
         }
