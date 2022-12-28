@@ -13,23 +13,27 @@
         }
     </style>
 </head>
-<body>
+<body th:with="isAdmin=${#authentication.getName()!='anonymousUser'}">
 <div class="wrap">
 <header>
+    <div th:if="${!isAdmin}" style="margin-bottom: 20px">
+    <a style="text-decoration:none; color:white; font-weight:bold;
+    padding: 10px; background-color: lightblue; font-style:italic;" href="/login">Login</a>
+    </div>
     <h2>Choose course:</h2>
 </header>
 <main>
-    <form action="AddStudent" method="post">
+    <form action="/courses/manageStudents" method="get">
         <th:block th:each="course:${#lists.sort(courses)}">
         <input type="radio" name="courseChoice" th:attr="value=${course.getCourseId()}"> <th:block th:text="${course.getName()}"></th:block>
-            <a style="margin-left:10px; font-weight:bold" th:href="@{'/courses/delete/' + ${course.getCourseId()}}">(DELETE)</a>
-            <a style="margin-left:10px; font-weight:bold" th:href="@{'/courses/edit-form/' + ${course.getCourseId()}}">(EDIT)</a><br/>
+            <a th:if="${isAdmin}" style="margin-left:10px; font-weight:bold" th:href="@{'/courses/delete/' + ${course.getCourseId()}}">(DELETE)</a>
+            <a th:if="${isAdmin}" style="margin-left:10px; font-weight:bold" th:href="@{'/courses/edit-form/' + ${course.getCourseId()}}">(EDIT)</a><br/>
         </th:block>
         <br/>
-        <input type='submit' value='Manage students' style="margin-bottom: 20px;
+        <input type='submit' th:value="${isAdmin} ? 'Manage students' : 'View students'" style="margin-bottom: 20px;
         text-decoration:none; color:white; font-weight:bold; padding: 5px;
         border:none; box-shadow: 2px 2px lightblue; background-color: lightsalmon"/> <br/>
-        <a style="text-decoration:none; color:white; font-weight:bold; padding: 5px; background-color: lightblue;
+        <a th:if="${isAdmin}" style="text-decoration:none; color:white; font-weight:bold; padding: 5px; background-color: lightblue;
             margin-top:5px; box-shadow: 2px 2px lightblue" href="/courses/add-form">+ New course</a> <br/>
         <p style="color:red" th:text="${error!='null'} ? ${error} : ''"></p>
     </form>

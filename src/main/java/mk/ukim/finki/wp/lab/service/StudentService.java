@@ -27,7 +27,6 @@ public class StudentService implements IStudentService {
     }
 
     public void save(String username, String password, String name, String surname) {
-        if(username==null || username.isEmpty() || password==null || password.isEmpty() || name==null || name.isEmpty() || surname==null || surname.isEmpty()) return;
         Student s = new Student(username, password, name, surname);
         studentRepository.findAll().removeIf(r->r.getUsername().equals(username));
         studentRepository.save(s);

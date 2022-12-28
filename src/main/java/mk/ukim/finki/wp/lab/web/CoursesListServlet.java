@@ -26,8 +26,8 @@ public class CoursesListServlet extends HttpServlet
         PrintWriter out = resp.getWriter();
 
         List<Course> courseList = courseService.findAll();
-
-        out.println("""
+        // :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
+        out.println("""  
                 <html>
                 <head>
                     <meta charset="utf-8">
@@ -45,15 +45,23 @@ public class CoursesListServlet extends HttpServlet
                 </header>
                 <main>
                     <h2>Choose course:</h2>""");
-        out.println("<form action=\"AddStudent\" method=\"post\">\n");
-        for(int i=0;i<5;++i) {
+        out.println("<form action=\"AddStudent\" method=\"post\">\n"); // :) :) :) :) :) :) :) :) :) :) :) :)
+        for(int i=0;i<5;++i) { //                                                   :)
             out.printf("<input type=\"radio\" name=\"courseChoice\" value=\"%d\"> %s<br/>\n", courseList.get(i).getCourseId(), courseList.get(i).getName());
-        }
+        } // :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
         out.println("""
                     <br/>
                     <input type='submit' value='Submit'/>
                 </main>
                 </body>
-                </html>""");
-    }
-}
+                </html>"""); // :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
+    }  // :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
+}   // :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
+// :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
+// :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
+// :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
+// :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
+// :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :) :)
+
+// Java Enterprise Grade Web Application.
+// © FINKI 2023. All rights reserved.

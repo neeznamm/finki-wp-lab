@@ -34,13 +34,13 @@
         <input type="hidden" name="gradeId" th:attr="value=${enrollment.getGrade().getGradeId()}">
         <label>
           New grade:
-          <input type="text" name="newGrade" placeholder="e.g. A, B, C ..."/>
+          <input type="text" name="newGrade" placeholder="e.g. A, B, C ..." required/>
         </label>
         <label>
           New timestamp:
           <input type="datetime-local" name="newTimestamp" step="1"/>
         </label>
-        <input type="submit" style="padding: 3px; background-color:lightsalmon; border-radius: 5px;" id="btn" value="Update grade"/>
+        <input type="submit" style="padding: 3px; background-color:lightsalmon; border-radius: 5px;" id="btn" value="Update grade" required/>
       </form>
 
     </li>

@@ -13,19 +13,26 @@
         }
     </style>
 </head>
-<body>
+<body th:with="isAdmin=${#authentication.getName()!='anonymousUser'}">
 <div class="wrap">
 <header>
-    <h2 style="margin-bottom: 10px">Select the student to enroll:</h2>
+    <div th:if="${!isAdmin}" style="margin-bottom: 20px; font-weight: bold">
+        <a style="text-decoration:none; color:white; font-weight:bold;
+    padding: 10px; background-color: lightblue; font-style:italic;" href="/login">Login</a>
+    </div>
+    <div style="font-weight: bold">
+    <th:block th:text="${isAdmin} ? 'Select the student to enroll:' : 'List of currently enrolled university students:'"></th:block>
+    </div>
 </header>
 <section>
-    <a style="text-decoration:none; color:white; font-weight:bold; padding: 5px; background-color: lightblue;
+    <a th:if="${isAdmin}" style="text-decoration:none; color:white; font-weight:bold; padding: 5px; background-color: lightblue;
             margin-top:5px; box-shadow: 2px 2px lightblue" href='/createStudent.html' type='button'>+ New Student</a> <br/> <br/>
-    <form action="/StudentEnrollmentSummary" method="post">
+    <form action="/courses/enrollmentsForCourse" method="get">
     <th:block th:each="student:${students}">
-    <input type="radio" name="username" th:attr="value=${student.getUsername()}"><th:block th:text="${student.getName()} + ' ' + ${student.getSurname()}"></th:block><br/></th:block>
+    <input th:type="${isAdmin} ? 'radio' : 'hidden' " name="username" th:attr="value=${student.getUsername()}">
+        <th:block th:text="${student.getName()} + ' ' + ${student.getSurname()}"></th:block><br/></th:block>
     <br/>
-    <input type='submit' style="margin-bottom: 20px;
+    <input th:if="${isAdmin}" type='submit' style="margin-bottom: 20px;
         text-decoration:none; color:white; font-weight:bold; padding: 5px;
         border:none; box-shadow: 2px 2px lightblue; background-color: lightsalmon" value='Enroll'>
     </form>
